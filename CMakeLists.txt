@@ -3,6 +3,8 @@ project(Algos)
 
 set(CMAKE_CXX_STANDARD 20)
 
+include_directories(include)
+
 add_executable(Algos
         include/Arrays/Sorting.h
         include/Arrays/Searching.h

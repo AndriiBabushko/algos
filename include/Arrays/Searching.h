@@ -5,4 +5,10 @@
 #ifndef SEARCHING_H
 #define SEARCHING_H
 
+namespace Arrays {
+    class Searching {
+
+};
+}
+
 #endif //SEARCHING_H
