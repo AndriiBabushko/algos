@@ -1,43 +1,40 @@
-//
-// Created by Andrii on 6/8/2025.
-//
+#pragma once
 
 #ifndef SORTING_H
 #define SORTING_H
 
-#include <iostream>
 #include <vector>
 
 namespace Arrays {
     class Sorting {
     public:
-        static std::vector<int> quickSort(const std::vector<int>& arr) {
-            std::vector<int> result = arr;
+        // Time complexity: O(log(n)) due to recursion
+        static void quickSort(std::vector<int>& arr, const size_t start, const size_t end) {
+            if (end <= start) return;
 
-            int i = -1;
-            for (int j = 0; j < result.size(); j++) {
-                if (result[j] < result[result.size() - 1]) {
-                    ++i;
+            const size_t pivot = partition(arr, start, end);
+            if (pivot > start) {
+                quickSort(arr, start, pivot - 1);
+            }
+            if (pivot < end) {
+                quickSort(arr, pivot + 1, end);
+            }
+        }
 
-                    const int temp = result[i];
-                    result[i] = result[j];
-                    result[j] = temp;
-                }
+    private:
+        static size_t partition(std::vector<int>& arr, const size_t start, const size_t end) {
+            const int pivot = arr[end];
+            size_t i = start;
 
-                if (j == result.size() - 1) {
-                    ++i;
-
-                    const int temp = result[i];
-                    result[i] = result[result.size() - 1];
-                    result[result.size() - 1] = temp;
+            for (size_t j = start; j < end; ++j) {
+                if (arr[j] < pivot) {
+                    std::swap(arr[i++], arr[j]);
                 }
             }
 
-            std::cout << "Array after swapping i and j values depending on pivot: " << std::endl;
-            for (auto i : result)
-                std::cout << i << " ";
+            std::swap(arr[i], arr[end]);
 
-            return result;
+            return i;
         }
     };
 }
